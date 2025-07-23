@@ -7,26 +7,59 @@
 #include "arithmetic.h"
 #include "ansi.h"
 
+//-BASIC VARIABLES-//
+
+// Echo command variables
 char echoStr[] = "echo";
 char userEchoMsg[512];
+// OS info command variables
 char osInfoStr[] = "get/osInfo";
 char osInfo[32];
+// Help command variable
 char helpStr[] = "help";
+// Clear screen variable
 char clrsStr[] = "clrs";
-char rmStr[] = "rm";
-char rmFile[256];
-char exitStr[] = "exit";
-char chngUserNameStr[] = "username -c";
-char chngUserPassStr[] = "password -c";
-char userNameIn[256];
-char userPassIn[256];
-char userEchoStr[] = "echo aui";
+// User password attempt
 char userPassAtt[256];
+// String length command variables
 char strLenStr[] = "strlen";
 char strLenUserIn[256];
-char crtFlStr[] = "crt -fl";
-char crtFlUserIn[256];
 int strLen;
+// Exit command variable
+char exitStr[] = "exit";
+
+//-----------------//
+
+//-USER ACCOUNT VARIABLES-//
+
+// Change user username variables
+char chngUserNameStr[] = "username -c";
+char userNameIn[256];
+// Change user password variables
+char chngUserPassStr[] = "password -c";
+char userPassIn[256];
+// Echo all user information
+char userEchoStr[] = "echo aui";
+
+//------------------------//
+
+//-FILE VARIABLES-//
+
+// Create file command variables
+char crtFlStr[] = "crt";
+char crtFlUserIn[256];
+// Remove file command variables
+char rmStr[] = "rm";
+char rmFile[256];
+// Write to file command variables
+char wrtFlStr[] = "wrt";
+char wrtFlApStr[] = "wrt -a";
+char wrtFlApNlStr[] = "wrt -a -nl";
+char wrtFlNm[256];
+char wrtFlInStr[1024];
+char wrtFlApInStr[1024];
+
+//----------------//
 
 void echof() {
     printf("> ");
@@ -133,6 +166,33 @@ void rmf(char *rmFile) {
         printf(COLOR_RED ANSI_RESET);
     }
 }
+
+int wrtFl() {
+    // Ask for file to write to
+    printf("> ");
+    scanf("%s\n> ", wrtFlNm);
+    // Ask what content to write to file
+    printf(" ");
+    scanf(" %[^\n]", wrtFlInStr);
+
+        FILE *fptr;
+        fptr = fopen(wrtFlNm, "w");
+
+        if (fptr == NULL) {
+            printf(COLOR_RED "Error: Failed writing to the file %s", wrtFlNm);
+
+            return 1;
+        }
+
+            fprintf(fptr, "%s", wrtFlInStr);
+
+                fclose(fptr);
+
+            printf("Writing to file %s was successfull", wrtFlNm);
+        
+        return 0;
+}
+
 void exitf() {
     printf("Exiting VK Shell...\n");
     exit(0);

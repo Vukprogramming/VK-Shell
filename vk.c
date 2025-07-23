@@ -134,17 +134,23 @@ int main() {
                 main_sce();
             }
 
+            // Create file command
+            else if (strcmp(userIn, crtFlStr) == 0) {
+                crtFlf();
+                main_sce();
+            }
+
             // Remove file command
             else if (strcmp(userIn, rmStr) == 0) {
                 rmf();
                 main_sce();
             }
 
-            // Create file command
-            else if (strcmp(userIn, crtFlStr) == 0) {
-                crtFlf();
-                main_sce();
-            }
+            // Write to file command
+                else if (strcmp(userIn, wrtFlStr) == 0) {
+                    wrtFl();
+                    main_sce();
+                } 
 
             // Exit command
             else if (strcmp(userIn, exitStr) == 0) {

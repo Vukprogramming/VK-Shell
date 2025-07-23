@@ -1,0 +1,5 @@
+# Ignore vk binary
+vk
+
+# Ignore .o files
+.o

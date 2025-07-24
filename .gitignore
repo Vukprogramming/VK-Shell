@@ -3,3 +3,6 @@ vk
 
 # Ignore .o files
 .o
+
+# Ignore .exe files
+.exe

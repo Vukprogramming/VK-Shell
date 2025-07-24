@@ -79,6 +79,9 @@ void helpf() {
     printf("%s: Command to change username (DEFAULT USERNAME IS 'X' | DEFAULT PASSWORD IS 'VKSHELL')\n", chngUserNameStr);
     printf("%s: Command to change password\n", chngUserPassStr);
     printf("%s: Command to print all user info\n", userEchoStr);
+    printf("%s: Command to find the length of a string\n", strLenStr);
+    printf("%s: Command to create a file\n", crtFlStr);
+    printf("%s: Command to write to a file (add -a to apend content to file | add -a -nl to append content on a newline)\n", wrtFlStr);
     printf("%s: Command to remove a file\n", rmStr);
     printf("%s: Command to exit the VK Shell\n", exitStr);
 }

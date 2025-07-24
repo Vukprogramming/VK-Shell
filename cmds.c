@@ -64,17 +64,20 @@ char buffer[1024];
 
 //----------------//
 
+// Echo function
 void echof() {
     printf("> ");
     scanf("%s", userEchoMsg);
     printf("%s\n", userEchoMsg);
 }
 
+// OS info function
 void osInfof() {
     const char* osInfo = getOS();
     printf("%s\n", osInfo);
 }
 
+// Help function
 void helpf() {
     printf("\n%s: Command to print text\n", echoStr);
     printf("%s: Command to get info about what OS (Operating System) your currently using\n", osInfoStr);
@@ -91,10 +94,12 @@ void helpf() {
     printf("%s: Command to exit the VK Shell\n", exitStr);
 }
 
+// Clear screen function
 void clrsf() {
     printf("\033[2J\033[H");
 } 
 
+// Change user username function
 void chngUserName() {
     printf("Enter your password: ");
     scanf(" %[^\n]", userPassAtt);
@@ -106,6 +111,7 @@ void chngUserName() {
     }
 }
 
+// Change user password function
 void chngUserPass() {
     printf("Enter your password: ");
     scanf(" %[^\n]", userPassAtt);
@@ -116,6 +122,7 @@ void chngUserPass() {
         }
 }
 
+// Print all user info function
 void userEcho() {
     printf("Enter your password: ");
     scanf("%s", userPassAtt);
@@ -125,6 +132,7 @@ void userEcho() {
         }
 }
 
+// Get string length function
 void strLenf() {
     printf("> ");
     scanf(" %[^\n]", strLenUserIn);
@@ -133,6 +141,7 @@ void strLenf() {
         printf("%d", strLen);
 }
 
+// Create file function
 int crtFlf() {
     printf("> ");
     scanf("%s", crtFlUserIn);
@@ -153,6 +162,7 @@ int crtFlf() {
     return 0;
 }
 
+// Remove file function
 void rmf(char *rmFile) {
     printf("Enter your password: ");
     scanf("%s", userPassAtt);
@@ -174,6 +184,7 @@ void rmf(char *rmFile) {
     }
 }
 
+// Write to file function
 int wrtFl() {
     // Ask for file to write to
     printf("> ");
@@ -201,6 +212,7 @@ int wrtFl() {
         return 0;
 }
 
+// Append content to file function (write)
 int wrtApFl() {
     // Ask for file to write to
     printf("> ");
@@ -228,6 +240,7 @@ int wrtApFl() {
         return 0;
 }
 
+// Append content on new line to file function (write)
 int wrtFlApNl() {
     // Ask for file to write to
     printf("> ");
@@ -255,6 +268,7 @@ int wrtFlApNl() {
         return 0;
 }
 
+// Read file function
 int rdFl() {
     // Ask for what file to read
     printf("> ");
@@ -279,6 +293,7 @@ int rdFl() {
 
 }
 
+// Exit function
 void exitf() {
     printf("Exiting VK Shell...\n");
     exit(0);

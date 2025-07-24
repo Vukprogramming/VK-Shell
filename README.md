@@ -16,6 +16,7 @@ this project is still unfinished
 * strlen: Lets you input a string and tell you the length of that strings
 * crt: Creates a file
 * wrt: Writes to a file (add -a to apend content to the file | add -a -nl if you want you want you apend content on a new line)
+* rd: Command to read and print the contents of a file
 * rm: Removes a file
 
 **NOTE: These commands only work in files that are in the same directory**

@@ -284,7 +284,7 @@ int rdFl() {
     }
 
     while (fgets(buffer, sizeof(buffer), fptr) != NULL) {
-        printf("\n%s", buffer);
+        printf("%s", buffer);
     }
 
     fclose(fptr);

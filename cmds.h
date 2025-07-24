@@ -48,10 +48,8 @@ extern char rmFile[];
 extern char wrtFlStr[];
 extern char wrtFlNm[];
 extern char wrtFlInStr[];
-extern char wrtFlApInStr[];
 extern char wrtFlApStr[];
 extern char wrtFlApNlStr[];
-extern char wrtFlApNlInStr[];
 
 //----------------//
 

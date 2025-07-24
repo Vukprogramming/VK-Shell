@@ -57,7 +57,6 @@ char wrtFlApStr[] = "wrt -a";
 char wrtFlApNlStr[] = "wrt -a -nl";
 char wrtFlNm[256];
 char wrtFlInStr[1024];
-char wrtFlApInStr[1024];
 
 //----------------//
 
@@ -172,7 +171,8 @@ int wrtFl() {
     printf("> ");
     scanf("%s\n> ", wrtFlNm);
     // Ask what content to write to file
-    printf(" ");
+    printf("> ");
+    fflush(stdout);
     scanf(" %[^\n]", wrtFlInStr);
 
         FILE *fptr;
@@ -185,6 +185,60 @@ int wrtFl() {
         }
 
             fprintf(fptr, "%s", wrtFlInStr);
+
+                fclose(fptr);
+
+            printf("Writing to file %s was successfull", wrtFlNm);
+        
+        return 0;
+}
+
+int wrtApFl() {
+    // Ask for file to write to
+    printf("> ");
+    scanf("%s\n> ", wrtFlNm);
+    // Ask what content to write to file
+    printf("> ");
+    fflush(stdout);
+    scanf(" %[^\n]", wrtFlInStr);
+
+        FILE *fptr;
+        fptr = fopen(wrtFlNm, "a");
+
+        if (fptr == NULL) {
+            printf(COLOR_RED "Error: Failed writing to the file %s", wrtFlNm);
+
+            return 1;
+        }
+
+            fprintf(fptr, " %s", wrtFlInStr);
+
+                fclose(fptr);
+
+            printf("Writing to file %s was successfull", wrtFlNm);
+        
+        return 0;
+}
+
+int wrtFlApNl() {
+        // Ask for file to write to
+    printf("> ");
+    scanf("%s\n> ", wrtFlNm);
+    // Ask what content to write to file
+    printf("> ");
+    fflush(stdout);
+    scanf(" %[^\n]", wrtFlInStr);
+
+        FILE *fptr;
+        fptr = fopen(wrtFlNm, "a");
+
+        if (fptr == NULL) {
+            printf(COLOR_RED "Error: Failed writing to the file %s", wrtFlNm);
+
+            return 1;
+        }
+
+            fprintf(fptr, "\n%s", wrtFlInStr);
 
                 fclose(fptr);
 

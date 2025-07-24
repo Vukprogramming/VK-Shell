@@ -147,10 +147,20 @@ int main() {
             }
 
             // Write to file command
-                else if (strcmp(userIn, wrtFlStr) == 0) {
-                    wrtFl();
-                    main_sce();
-                } 
+            else if (strcmp(userIn, wrtFlStr) == 0) {
+                wrtFl();
+                main_sce();
+            } 
+
+            else if(strcmp(userIn, wrtFlApStr) == 0) {
+                wrtApFl();
+                main_sce();
+            }
+
+            else if (strcmp(userIn, wrtFlApNlStr) == 0) {
+                wrtFlApNl();
+                main_sce();
+            }
 
             // Exit command
             else if (strcmp(userIn, exitStr) == 0) {

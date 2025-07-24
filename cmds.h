@@ -50,6 +50,10 @@ extern char wrtFlNm[];
 extern char wrtFlInStr[];
 extern char wrtFlApStr[];
 extern char wrtFlApNlStr[];
+// Read file command variables
+extern char rdFlStr[];
+extern char rdFlNm[];
+extern char buffer[];
 
 //----------------//
 
@@ -94,7 +98,8 @@ int wrtFl();
 // Append content to file function (Still counts as a write to file functions)
 int wrtApFl();
 int wrtFlApNl();
-
+// Read file function
+int rdFl();
 //---------------//
 
 #endif

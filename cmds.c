@@ -57,6 +57,10 @@ char wrtFlApStr[] = "wrt -a";
 char wrtFlApNlStr[] = "wrt -a -nl";
 char wrtFlNm[256];
 char wrtFlInStr[1024];
+// Read file command variables
+char rdFlStr[] = "rd";
+char rdFlNm[256];
+char buffer[1024];
 
 //----------------//
 
@@ -224,7 +228,7 @@ int wrtApFl() {
 }
 
 int wrtFlApNl() {
-        // Ask for file to write to
+    // Ask for file to write to
     printf("> ");
     scanf("%s\n> ", wrtFlNm);
     // Ask what content to write to file
@@ -248,6 +252,30 @@ int wrtFlApNl() {
             printf("Writing to file %s was successfull", wrtFlNm);
         
         return 0;
+}
+
+int rdFl() {
+    // Ask for what file to read
+    printf("> ");
+    scanf("%s", rdFlNm);
+
+    FILE *fptr;
+    fptr = fopen(rdFlNm, "r");
+
+    if (fptr == NULL) {
+        printf(COLOR_RED "Error: Failed reading file %s", wrtFlNm);
+
+        return 1;
+    }
+
+    while (fgets(buffer, sizeof(buffer), fptr) != NULL) {
+        printf("\n%s", buffer);
+    }
+
+    fclose(fptr);
+
+    return 0;
+
 }
 
 void exitf() {

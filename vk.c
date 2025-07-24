@@ -152,13 +152,21 @@ int main() {
                 main_sce();
             } 
 
+            // Append content to file (write)
             else if(strcmp(userIn, wrtFlApStr) == 0) {
                 wrtApFl();
                 main_sce();
             }
 
+            // Append content to file on a new line (write)
             else if (strcmp(userIn, wrtFlApNlStr) == 0) {
                 wrtFlApNl();
+                main_sce();
+            }
+
+            // Read file command
+            else if (strcmp(userIn, rdFlStr) == 0) {
+                rdFl();
                 main_sce();
             }
 

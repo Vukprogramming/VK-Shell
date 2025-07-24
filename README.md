@@ -11,7 +11,7 @@ this project is still unfinished
 * crls: Clears the screen using ANSI escape codes (may not work in windows cmd if you didnt set up ANSI escape codes)
 * username -c: Changes the user's username
 * password -c: Changes the user's password
-**Default username is: "X" | Default password is "VKSHELL" (Youll need the password to run certain commands)**
+**Default username is: "X" | Default password is "VKSHELL" (You'll need the password to run certain commands)**
 * echo aui: Prints all user information (Username and password)
 * strlen: Lets you input a string and tell you the length of that strings
 * crt: Creates a file

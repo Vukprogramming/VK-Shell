@@ -9,8 +9,8 @@ this project is still unfinished
 * get/osInfo: Prints out what OS you are currently using
 * help: prints out all the commands and what they do
 * crls: Clears the screen using ANSI escape codes (may not work in windows cmd if you didnt set up ANSI escape codes)
-* username -c: Changes the user's username
-* password -c: Changes the user's password
+* chuser: Changes the user's username
+* chpass -c: Changes the user's password
 **Default username is: "X" | Default password is "VKSHELL" (You'll need the password to run certain commands)**
 * echo aui: Prints all user information (Username and password)
 * strlen: Lets you input a string and tell you the length of that strings

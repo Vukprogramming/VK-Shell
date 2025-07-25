@@ -151,6 +151,7 @@ int chngUserPass() {
     printf("Enter your password: ");
     if (fgets(userPassAtt, sizeof(userPassAtt), stdin) == NULL) {
         printf("Error reading input\n");
+        
         return 1;
     }
 

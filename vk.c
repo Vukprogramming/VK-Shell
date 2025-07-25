@@ -57,6 +57,7 @@ int execute_command(const char *userIn) {
         }
     }
     printf("Unknown command: %s\n", userIn);
+    
     return 0;
 }
 

@@ -4,81 +4,98 @@
 #include "cmds.h"
 #include "userVar.h"
 #include "os_detect.h"
-#include "arithmetic.h"
 #include "ansi.h"
 
 //-BASIC VARIABLES-//
 
 // Echo command variables
-char echoStr[] = "echo";
 char userEchoMsg[512];
 // OS info command variables
-char osInfoStr[] = "get/osInfo";
 char osInfo[32];
-// Help command variable
-char helpStr[] = "help";
-// Clear screen variable
-char clrsStr[] = "clrs";
 // User password attempt
 char userPassAtt[256];
 // String length command variables
-char strLenStr[] = "strlen";
 char strLenUserIn[256];
 int strLen;
-// Exit command variable
-char exitStr[] = "exit";
 
 //-----------------//
 
 //-USER ACCOUNT VARIABLES-//
 
 // Change user username variables
-char chngUserNameStr[] = "username -c";
 char userNameIn[256];
 // Change user password variables
-char chngUserPassStr[] = "password -c";
 char userPassIn[256];
-// Echo all user information
-char userEchoStr[] = "echo aui";
 
 //------------------------//
 
 //-FILE VARIABLES-//
 
 // Create file command variables
-char crtFlStr[] = "crt";
 char crtFlUserIn[256];
 // Remove file command variables
-char rmStr[] = "rm";
 char rmFile[256];
 // Write to file command variables
-char wrtFlStr[] = "wrt";
-char wrtFlApStr[] = "wrt -a";
-char wrtFlApNlStr[] = "wrt -a -nl";
 char wrtFlNm[256];
 char wrtFlInStr[1024];
 // Read file command variables
-char rdFlStr[] = "rd";
 char rdFlNm[256];
 char buffer[1024];
 
 //----------------//
 
+// BASIC COMMAND STRINGS
+char echoStr[] = "echo";
+char osInfoStr[] = "get/osInfo";
+char helpStr[] = "help";
+char clrsStr[] = "clrs";
+char strLenStr[] = "strlen";
+char exitStr[] = "exit";
+
+// USER ACCOUNT COMMAND STRINGS
+char chngUserNameStr[] = "chuser";
+char chngUserPassStr[] = "chpass";
+char userEchoStr[] = "userinfo";
+
+// FILE COMMAND STRINGS
+char crtFlStr[] = "create";
+char rmStr[] = "rm";
+char wrtFlStr[] = "write";
+char wrtFlApStr[] = "write -a";
+char wrtFlApNlStr[] = "write -a -nl";
+char rdFlStr[] = "read";
+
 // Echo function
-void echof() {
-    printf("> ");
-    scanf("%s", userEchoMsg);
+int echof() {
+    printf(">");
+    if (fgets(userEchoMsg, sizeof(userEchoMsg), stdin) == NULL) {
+        printf("Error: Failed to read input");
+        return 1;
+    }
+
+    userIn[strcspn(userEchoMsg, "\n")] = 0;  // remove newline
+
+    if (strlen(userEchoMsg) == 0) {
+        printf("Error: No user input given");
+        
+        return 0;
+    }
+
     printf("%s\n", userEchoMsg);
+
+    return 0;
 }
 
 // OS info function
-void osInfof() {
+int osInfof() {
     const char* osInfo = getOS();
     printf("%s\n", osInfo);
+
+    return 0;
 }
 
 // Help function
-void helpf() {
+int helpf() {
     printf("\n%s: Command to print text\n", echoStr);
     printf("%s: Command to get info about what OS (Operating System) your currently using\n", osInfoStr);
     printf("%s: Command to see this text\n", helpStr);
@@ -92,59 +109,111 @@ void helpf() {
     printf("%s: Command to read and print the contents of a file\n", rdFlStr);
     printf("%s: Command to remove a file\n", rmStr);
     printf("%s: Command to exit the VK Shell\n", exitStr);
+
+    return 0;
 }
 
 // Clear screen function
-void clrsf() {
+int clrsf() {
     printf("\033[2J\033[H");
+
+    return 0;
 } 
 
 // Change user username function
-void chngUserName() {
+int chngUserName() {
     printf("Enter your password: ");
-    scanf(" %[^\n]", userPassAtt);
+    if (fgets(userPassAtt, sizeof(userPassAtt), stdin) == NULL) {
+        printf("Error reading password.\n");
+        return 1;
+    }
+
+        userPassAtt[strcspn(userPassAtt, "\n")] = 0;
+
         if (strcmp(userPassAtt, userPass) == 0) {
             printf("Enter your new username: ");
-            scanf("%s", userNameIn);
+            if (fgets(userNameIn, sizeof(userNameIn), stdin) == NULL) {
+                printf("Error reading input\n");
+                return 1;
+            }
+
+            userNameIn[strcspn(userNameIn, "\n")] = 0;
+
                 strcpy(userName, userNameIn);
                 printf("\nUsername change to %s\n", userName);
     }
+
+    return 0;
 }
 
 // Change user password function
-void chngUserPass() {
+int chngUserPass() {
     printf("Enter your password: ");
-    scanf(" %[^\n]", userPassAtt);
+    if (fgets(userPassAtt, sizeof(userPassAtt), stdin) == NULL) {
+        printf("Error reading input\n");
+        return 1;
+    }
+
+    userPassAtt[strcspn(userPassAtt, "\n")] = 0;
+    
         if (strcmp(userPassAtt, userPass) == 0) {
             printf("Enter your new Password: ");
-            scanf("%s", userPassIn);
+            if (fgets(userPassIn, sizeof(userPassIn), stdin) == NULL) {
+                printf("Error reading failed\n");
+                return 1;
+            }
+
+            userPassIn[strcspn(userPassIn, "\n")] = 0;
+            
             strcpy(userPass, userPassIn);
         }
+
+    return 0;
 }
 
 // Print all user info function
-void userEcho() {
-    printf("Enter your password: ");
-    scanf("%s", userPassAtt);
+int userEcho() {
+    if (fgets(userPassAtt, sizeof(userPassAtt), stdin) == NULL) {
+        printf("Error reading input\n");
+        return 1;
+    }
+
+    userPassAtt[strcspn(userPassAtt, "\n")] = 0;
+    
         if (strcmp(userPassAtt, userPass) == 0) {
             printf("\nUser: %s\n", userName);
             printf("Password: %s\n", userPass);
         }
+
+    return 0;
 }
 
 // Get string length function
-void strLenf() {
+int strLenf() {
     printf("> ");
-    scanf(" %[^\n]", strLenUserIn);
+    if (fgets(strLenUserIn , sizeof(strLenUserIn), stdin) ==  NULL) {
+        printf("Error reading input\n");
+        return 1;
+    }
+
+    strLenUserIn[strcspn(strLenUserIn, "\n")] = 0;
+
         strLen = (strlen(strLenUserIn));
         
         printf("%d", strLen);
+    
+    return 0;
 }
 
 // Create file function
 int crtFlf() {
     printf("> ");
-    scanf("%s", crtFlUserIn);
+    if (fgets(crtFlUserIn, sizeof(crtFlUserIn), stdin) == NULL) {
+        printf("Error reading input\n");
+        return 1;
+    }
+
+    crtFlUserIn[strcspn(crtFlUserIn, "\n")] = 0;
 
         FILE *fptr;
         fptr = fopen(crtFlUserIn, "w");
@@ -157,48 +226,64 @@ int crtFlf() {
 
         fclose(fptr);  
 
-        printf("File %s has been created and written successfully", crtFlUserIn);
+        printf("File %s has been created and written successfully\n", crtFlUserIn);
 
     return 0;
 }
 
 // Remove file function
-void rmf(char *rmFile) {
+int rmf(void) {
     printf("Enter your password: ");
-    scanf("%s", userPassAtt);
-        if (strcmp(userPassAtt, userPass) == 0) {
-            printf("> ");
-            scanf("%s", rmFile);
+    if (fgets(userPassAtt, sizeof(userPassAtt), stdin) ==  NULL) {
+        printf("Error reading input");
+        return 1;
     }
 
-    if (rmFile == NULL) {
-        printf(COLOR_RED "Error: No filename provided.\n" ANSI_RESET);
-        return;
+    userPassAtt[strcspn(userPassAtt, "\n")] = 0;
+
+        if (strcmp(userPassAtt, userPass) == 0) {
+            printf("> ");
+            if (fgets(rmFile, sizeof(rmFile), stdin) ==  NULL) {
+                printf("Error reading input\n");
+                return 1;
+            }
     }
+
+    rmFile[strcspn(rmFile, "\n")] = 0;
 
     if (remove(rmFile) == 0) {
         printf("File \"%s\" has been successfully removed.\n", rmFile);
     } else {
-        perror(COLOR_RED "Error removing file");
+        perror(COLOR_RED "Error removing file\n");
         printf(COLOR_RED ANSI_RESET);
     }
+
+    return 0;
 }
 
 // Write to file function
 int wrtFl() {
     // Ask for file to write to
     printf("> ");
-    scanf("%s\n> ", wrtFlNm);
+    if (fgets(wrtFlNm, sizeof(wrtFlNm), stdin) == NULL) {
+        printf("Error reading input\n");
+        return 1;
+    }
+
+    wrtFlNm[strcspn(wrtFlNm, "\n")] = 0;
+
     // Ask what content to write to file
     printf("> ");
-    fflush(stdout);
-    scanf(" %[^\n]", wrtFlInStr);
+    if (fgets(wrtFlInStr, sizeof(wrtFlInStr), stdin) == NULL) {
+        printf("Error reading input\n");
+        return 1;
+    }
 
         FILE *fptr;
         fptr = fopen(wrtFlNm, "w");
 
         if (fptr == NULL) {
-            printf(COLOR_RED "Error: Failed writing to the file %s", wrtFlNm);
+            printf(COLOR_RED "Error: Failed writing to the file %s\n", wrtFlNm);
 
             return 1;
         }
@@ -207,7 +292,7 @@ int wrtFl() {
 
                 fclose(fptr);
 
-            printf("Writing to file %s was successfull", wrtFlNm);
+            printf("Writing to file %s was successfull\n", wrtFlNm);
         
         return 0;
 }
@@ -216,17 +301,25 @@ int wrtFl() {
 int wrtApFl() {
     // Ask for file to write to
     printf("> ");
-    scanf("%s\n> ", wrtFlNm);
+    if (fgets(wrtFlNm, sizeof(wrtFlNm), stdin) == NULL) {
+        printf("Error reading input\n");
+        return 1;
+    }
+
+    wrtFlNm[strcspn(wrtFlNm, "\n")] = 0;
+
     // Ask what content to write to file
     printf("> ");
-    fflush(stdout);
-    scanf(" %[^\n]", wrtFlInStr);
+    if (fgets(wrtFlInStr, sizeof(wrtFlInStr), stdin) == NULL) {
+        printf("Error reading input\n");
+        return 1;
+    }
 
         FILE *fptr;
         fptr = fopen(wrtFlNm, "a");
 
         if (fptr == NULL) {
-            printf(COLOR_RED "Error: Failed writing to the file %s", wrtFlNm);
+            printf(COLOR_RED "Error: Failed writing to the file %s\n", wrtFlNm);
 
             return 1;
         }
@@ -235,7 +328,7 @@ int wrtApFl() {
 
                 fclose(fptr);
 
-            printf("Writing to file %s was successfull", wrtFlNm);
+            printf("Writing to file %s was successfull\n", wrtFlNm);
         
         return 0;
 }
@@ -244,17 +337,25 @@ int wrtApFl() {
 int wrtFlApNl() {
     // Ask for file to write to
     printf("> ");
-    scanf("%s\n> ", wrtFlNm);
+    if (fgets(wrtFlNm, sizeof(wrtFlNm), stdin) == NULL) {
+        printf("Error reading input\n");
+        return 1;
+    }
+
+    wrtFlNm[strcspn(wrtFlNm, "\n")] = 0;
+
     // Ask what content to write to file
     printf("> ");
-    fflush(stdout);
-    scanf(" %[^\n]", wrtFlInStr);
+    if (fgets(wrtFlInStr, sizeof(wrtFlInStr), stdin) == NULL) {
+        printf("Error reading input\n");
+        return 1;
+    }
 
         FILE *fptr;
         fptr = fopen(wrtFlNm, "a");
 
         if (fptr == NULL) {
-            printf(COLOR_RED "Error: Failed writing to the file %s", wrtFlNm);
+            printf(COLOR_RED "Error: Failed writing to the file %s\n", wrtFlNm);
 
             return 1;
         }
@@ -263,7 +364,7 @@ int wrtFlApNl() {
 
                 fclose(fptr);
 
-            printf("Writing to file %s was successfull", wrtFlNm);
+            printf("Writing to file %s was successfull\n", wrtFlNm);
         
         return 0;
 }
@@ -272,13 +373,18 @@ int wrtFlApNl() {
 int rdFl() {
     // Ask for what file to read
     printf("> ");
-    scanf("%s", rdFlNm);
+    if (fgets(rdFlNm, sizeof(rdFlNm), stdin) ==  NULL) {
+        printf("Error reading input\n");
+        return 1;
+    }
+
+    rdFlNm[strcspn(rdFlNm, "\n")] = 0;
 
     FILE *fptr;
     fptr = fopen(rdFlNm, "r");
 
     if (fptr == NULL) {
-        printf(COLOR_RED "Error: Failed reading file %s", wrtFlNm);
+        printf(COLOR_RED "Error: Failed reading file %s\n", wrtFlNm);
 
         return 1;
     }
@@ -294,7 +400,8 @@ int rdFl() {
 }
 
 // Exit function
-void exitf() {
+int exitf() {
     printf("Exiting VK Shell...\n");
     exit(0);
+    return 0;
 }

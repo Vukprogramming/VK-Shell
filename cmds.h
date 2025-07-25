@@ -62,44 +62,44 @@ extern char buffer[];
 //-BASIC FUNCTIONS-//
 
 // Echo function
-void echof(void);
+int echof(void);
 // OS info function
-void osInfof(void);
+int osInfof(void);
 // Help function
-void helpf(void);
+int helpf(void);
 // Clear screen function
-void clrsf(void);
+int clrsf(void);
 // String length function
-void strLenf(void);
+int strLenf(void);
 // Exit function
-void exitf(void);
+int exitf(void);
 
 //-----------------//
 
 //-USER ACCOUNT FUNCTIONS-//
 
 // Change user username function
-void chngUserName(void);
+int chngUserName(void);
 // Change user password function
-void chngUserPass(void);
+int chngUserPass(void);
 // Echo all user info function
-void userEcho(void);
+int userEcho(void);
 
 //------------------------//
 
 //-FILE FUNCTIONS-//
 
 // Create file function
-int crtFlf();
+int crtFlf(void);
 // Remove file function
-void rmf();
+int rmf(void);
 // Write to file functions
-int wrtFl();
+int wrtFl(void);
 // Append content to file function (Still counts as a write to file functions)
-int wrtApFl();
-int wrtFlApNl();
+int wrtApFl(void);
+int wrtFlApNl(void);
 // Read file function
-int rdFl();
+int rdFl(void);
 //---------------//
 
 #endif

@@ -6,3 +6,7 @@ vk
 
 # Ignore .exe files
 .exe
+
+# Ignore specified files
+arithmetic.c
+arithmetic.h

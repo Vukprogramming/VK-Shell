@@ -23,5 +23,5 @@ this project is still unfinished
 
 ## How to run
 You currently have 2 ways to run it
-* (Linux) Use the make file and compile it into a binary and run it using the command "./vk"
+* (Linux) Use the Makefile and compile it into a binary and run it using the command "./vk"
 * (Windows) You can cd into the VK Shell's directory and run the command "gcc -Wall -Wextra -std=c11 -o vk vk.c cmds.c userVar.c" to compile it into a .exe and run it

@@ -20,3 +20,8 @@ this project is still unfinished
 * rm: Removes a file
 
 **NOTE: These commands only work in files that are in the same directory**
+
+## How to run
+You currently have 2 ways to run it
+* 1. (Linux) Use the make file and compile it into a binary and run it using the command "./vk"
+* 2. (Windows) You can cd into the VK Shell's directory and run the command "gcc -Wall -Wextra -std=c11 -o vk vk.c cmds.c userVar.c" to compile it into a .exe and run it

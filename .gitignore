@@ -1,6 +1,3 @@
-# Ignore vk binary
-vk
-
 # Ignore .o files
 .o
 
@@ -8,5 +5,4 @@ vk
 .exe
 
 # Ignore specified files
-arithmetic.c
-arithmetic.h
+vk

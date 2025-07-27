@@ -17,6 +17,7 @@
 #define COLOR_LIGHT_CYAN    "\x1b[96m"
 #define COLOR_LIGHT_RED     "\x1b[91m"
 #define COLOR_LIGHT_MAGENTA "\x1b[95m"
-#define COLOR_WHITE 
+
+#define WHITE_BACKGROUND "\033[30;47m"
 
 #endif

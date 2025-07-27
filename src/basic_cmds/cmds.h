@@ -3,55 +3,35 @@
 
 //-BASIC VARIBLES-//
 
-// Echo command variables
-extern char echoStr[];
+// Echo command variable
 extern char userEchoMsg[];
-// OS info command variables
-extern char osInfoStr[];
+// OS info command variable
 extern char osInfo[];
-// Exit command variable
-extern char exitStr[];
-// Help command variable
-extern char helpStr[];
-// String length command variables
-extern char strLenStr[];
+// String length command variable
+extern char strLenUserIn[];
 extern int strLen;
-// User password attempt variable
-extern char userPassAtt[];
-// Clear screen command variable
-extern char clrsStr[];
 
 //---------------//
 
 //-USER ACCOUNT VARIABLES-//
 
-// Change user username command variables
-extern char chngUserNameStr[];
+// Change user username command variable
 extern char userNameIn[];
-// Change user password command variables
-extern char chngUserPassStr[];
+// Change user password command variable
 extern char userPassIn[];
-// Echo all user information command variable
-extern char userEchoStr[];
 
 //-----------------------//
 
 //-FILE VARIABLES-//
 
-// Create file command variables
-extern char crtFlStr[];
+// Create file command variable
 extern char crtFlUserIn[];
-// Remove file command variables
-extern char rmStr[];
+// Remove file command variable
 extern char rmFile[];
-// Write to file command variables
-extern char wrtFlStr[];
+// Write to file command variable
 extern char wrtFlNm[];
 extern char wrtFlInStr[];
-extern char wrtFlApStr[];
-extern char wrtFlApNlStr[];
 // Read file command variables
-extern char rdFlStr[];
 extern char rdFlNm[];
 extern char buffer[];
 
@@ -71,6 +51,10 @@ int helpf(void);
 int clrsf(void);
 // String length function
 int strLenf(void);
+// Show ANSI color table
+int shwClrTbl(void);
+// Caclulator functions
+
 // Exit function
 int exitf(void);
 

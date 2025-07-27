@@ -1,11 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "userVar.h"
-#include "cmds.h"
-#include "os_detect.h"
-#include "ansi.h"
-
+#include "src/userVar.h"
+#include "src/basic_cmds/cmds.h"
+#include "src/basic_cmds/os_detect.h"
+#include "src/ansi.h"
+#include "src/file_cmds/file_io.h"
+#include "src/calc_cmds/calc.h"
+#include "src/user_cmds/user.h"
 int main_sce(void);
 
 int main() {
@@ -40,6 +42,11 @@ command_t commands[] = {
     {"chpass", chngUserPass},
     {"echo aui", userEcho},
     {"strlen", strLenf},
+    {"colors", shwClrTbl},
+    {"add", addf},
+    {"sub", subf},
+    {"mul", mulf},
+    {"div", divf},
     {"crt", crtFlf},
     {"wrt", wrtFl},
     {"wrt -a", wrtApFl},

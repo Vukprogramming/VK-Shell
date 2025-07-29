@@ -53,14 +53,15 @@ int helpf() {
     printf("get/osInfo: Command to get info about what OS (Operating System) your currently using\n");
     printf("help: Command to see this text\n");
     printf("clrs: Command to clear the screen\n");
-    printf("add: Adds two numbers");
-    printf("sub: Subtracts two numbers");
-    printf("mul: Multiplies two numbers");
-    printf("div: Divides two numbers");
+    printf("strlen: Command to find the length of a string\n");
+    printf("colors: Command to print the ANSI color table\n");
+    printf("add: Adds two numbers\n");
+    printf("sub: Subtracts two numbers\n");
+    printf("mul: Multiplies two numbers\n");
+    printf("div: Divides two numbers\n");
     printf("chuser: Command to change username (DEFAULT USERNAME IS 'X' | DEFAULT PASSWORD IS 'VKSHELL')\n");
     printf("chpass: Command to change password\n");
     printf("echo aui: Command to print all user info\n");
-    printf("strlen: Command to find the length of a string\n");
     printf("crt: Command to create a file\n");
     printf("wrt: Command to write to a file (add -a to apend content to file | add -a -nl to append content on a newline)\n");
     printf("rd: Command to read and print the contents of a file\n");
@@ -89,7 +90,7 @@ int strLenf() {
 
         strLen = (strlen(strLenUserIn));
         
-        printf("%d", strLen);
+        printf("%d\n", strLen);
     
     return 0;
 }
@@ -103,6 +104,12 @@ int shwClrTbl()  {
     printf(COLOR_LIGHT_BLUE "LIGHT BLUE    " COLOR_LIGHT_GREEN "LIGHT GREEN\n");
     printf(COLOR_LIGHT_CYAN "LIGHT CYAN    " COLOR_LIGHT_RED "LIGHT RED\n");
     printf(COLOR_LIGHT_MAGENTA "      LIGHT MAGENTA\n" ANSI_RESET);
+
+    return 0;
+}
+
+int shellInfo() {
+    printf("VK Shell [Version 1.5]\n");
 
     return 0;
 }

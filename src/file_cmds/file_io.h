@@ -19,6 +19,22 @@ extern char rdFlStr[];
 extern char rdFlNm[];
 extern char buffer[];
 
+//-FILE FUNCTIONS-//
+
+// Create file function
+int crtFlf(void);
+// Remove file function
+int rmf(void);
+// Write to file functions
+int wrtFl(void);
+// Append content to file function (Still counts as a write to file functions)
+int wrtApFl(void);
+int wrtFlApNl(void);
+// Read file function
+int rdFl(void);
+
+//---------------//
+
 //----------------//
 
 #endif

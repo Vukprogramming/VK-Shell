@@ -5,5 +5,6 @@ extern char userIn[256];
 extern char userName[256];
 extern char userPass[256];
 extern char userPassAtt[256];
+extern int ERROR_CODE;
 
 #endif

@@ -6,3 +6,14 @@ extern char userNameIn[];
 extern char userPassIn[];
 
 //-----------------------//
+
+//-USER ACCOUNT FUNCTIONS-//
+
+// Change user username function
+int chngUserName(void);
+// Change user password function
+int chngUserPass(void);
+// Echo all user info function
+int userEcho(void);
+
+//------------------------//

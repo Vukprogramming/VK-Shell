@@ -11,9 +11,11 @@ int addf() {
     // Get a
     printf("> ");
     scanf("%f", &a);
+    while (getchar() != '\n');
     // Get b
     printf("> ");
     scanf("%f", &b);
+    while (getchar() != '\n');
 
     res = (a + b);
 
@@ -27,9 +29,11 @@ int subf() {
     // Get a
     printf("> ");
     scanf("%f", &a);
+    while (getchar() != '\n');
     // Get b
     printf("> ");
     scanf("%f", &b);
+    while (getchar() != '\n');
 
     res = (a - b);
 
@@ -43,9 +47,11 @@ int mulf() {
     // Get a
     printf("> ");
     scanf("%f", &a);
+    while (getchar() != '\n');
     // Get b
     printf("> ");
     scanf("%f", &b);
+    while (getchar() != '\n');
 
     res = (a * b);
 
@@ -59,9 +65,11 @@ int divf() {
     // Get a
     printf("> ");
     scanf("%f", &a);
+    while (getchar() != '\n');
     // Get b
     printf("> ");
     scanf("%f", &b);
+    while (getchar() != '\n');
 
     res = (a / b);
 

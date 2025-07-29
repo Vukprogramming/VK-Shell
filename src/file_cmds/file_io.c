@@ -23,7 +23,7 @@ char buffer[1024];
 
 // Create file function
 int crtFlf() {
-    printf("> ");
+    printf("File: ");
     if (fgets(crtFlUserIn, sizeof(crtFlUserIn), stdin) == NULL) {
         printf("Error reading input\n");
         return 1;
@@ -58,7 +58,7 @@ int rmf(void) {
     userPassAtt[strcspn(userPassAtt, "\n")] = 0;
 
         if (strcmp(userPassAtt, userPass) == 0) {
-            printf("> ");
+            printf("File: ");
             if (fgets(rmFile, sizeof(rmFile), stdin) ==  NULL) {
                 printf("Error reading input\n");
                 return 1;
@@ -80,7 +80,7 @@ int rmf(void) {
 // Write to file function
 int wrtFl() {
     // Ask for file to write to
-    printf("> ");
+    printf("File: ");
     if (fgets(wrtFlNm, sizeof(wrtFlNm), stdin) == NULL) {
         printf("Error reading input\n");
         return 1;
@@ -89,7 +89,7 @@ int wrtFl() {
     wrtFlNm[strcspn(wrtFlNm, "\n")] = 0;
 
     // Ask what content to write to file
-    printf("> ");
+    printf("Content: ");
     if (fgets(wrtFlInStr, sizeof(wrtFlInStr), stdin) == NULL) {
         printf("Error reading input\n");
         return 1;
@@ -118,7 +118,7 @@ int wrtFl() {
 // Append content to file function (write)
 int wrtApFl() {
     // Ask for file to write to
-    printf("> ");
+    printf("File: ");
     if (fgets(wrtFlNm, sizeof(wrtFlNm), stdin) == NULL) {
         printf("Error reading input\n");
         return 1;
@@ -127,7 +127,7 @@ int wrtApFl() {
     wrtFlNm[strcspn(wrtFlNm, "\n")] = 0;
 
     // Ask what content to write to file
-    printf("> ");
+    printf("Content: ");
     if (fgets(wrtFlInStr, sizeof(wrtFlInStr), stdin) == NULL) {
         printf("Error reading input\n");
         return 1;
@@ -156,7 +156,7 @@ int wrtApFl() {
 // Append content on new line to file function (write)
 int wrtFlApNl() {
     // Ask for file to write to
-    printf("> ");
+    printf("File: ");
     if (fgets(wrtFlNm, sizeof(wrtFlNm), stdin) == NULL) {
         printf("Error reading input\n");
         return 1;
@@ -165,7 +165,7 @@ int wrtFlApNl() {
     wrtFlNm[strcspn(wrtFlNm, "\n")] = 0;
 
     // Ask what content to write to file
-    printf("> ");
+    printf("Content: ");
     if (fgets(wrtFlInStr, sizeof(wrtFlInStr), stdin) == NULL) {
         printf("Error reading input\n");
         return 1;
@@ -194,7 +194,7 @@ int wrtFlApNl() {
 // Read file function
 int rdFl() {
     // Ask for what file to read
-    printf("> ");
+    printf("File: ");
     if (fgets(rdFlNm, sizeof(rdFlNm), stdin) ==  NULL) {
         printf("Error reading input\n");
         return 1;
@@ -202,7 +202,7 @@ int rdFl() {
 
     rdFlNm[strcspn(rdFlNm, "\n")] = 0;
 
-    FILE *fptr;
+    FILE *fptr; 
     fptr = fopen(rdFlNm, "r");
 
     if (fptr == NULL) {

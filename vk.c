@@ -43,6 +43,7 @@ command_t commands[] = {
     {"echo aui", userEcho},
     {"strlen", strLenf},
     {"colors", shwClrTbl},
+    {"info", shellInfo},
     {"add", addf},
     {"sub", subf},
     {"mul", mulf},

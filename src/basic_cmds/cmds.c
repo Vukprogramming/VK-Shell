@@ -109,7 +109,7 @@ int shwClrTbl()  {
 }
 
 int shellInfo() {
-    printf("VK Shell [Version 1.5]\n");
+    printf("VK Shell [Version 1.5.10]\n");
 
     return 0;
 }

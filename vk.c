@@ -54,6 +54,8 @@ command_t commands[] = {
     {"wrt -a -nl", wrtFlApNl},
     {"rd", rdFl},
     {"rm", rmf},
+    {"mkdir", mkDir},
+    {"rmdir", rmDir},
     {"exit", exitf},
     {NULL, NULL}
 };

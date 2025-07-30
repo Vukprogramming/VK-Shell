@@ -18,7 +18,9 @@ extern char wrtFlApNlStr[];
 extern char rdFlStr[];
 extern char rdFlNm[];
 extern char buffer[];
-
+// Make directory command variable
+extern char dirName[];
+// Remove directory
 //-FILE FUNCTIONS-//
 
 // Create file function
@@ -32,7 +34,10 @@ int wrtApFl(void);
 int wrtFlApNl(void);
 // Read file function
 int rdFl(void);
-
+// Make directory function
+int mkDir(void);
+// Remove directory function
+int rmDir(void);
 //---------------//
 
 //----------------//

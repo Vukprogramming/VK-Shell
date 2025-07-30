@@ -5,6 +5,13 @@
 #include "../userVar.h"
 #include "../ansi.h"
 
+#ifdef _WIN32
+    #include <direct.h> // For _mkdir() and _rmdir()
+#else
+    #include <sys/stat.h> // For mkdir()
+    #include <unistd.h> // For rmdir()
+#endif
+
 
 //-FILE VARIABLES-//
 
@@ -18,6 +25,8 @@ char wrtFlInStr[1024];
 // Read file command variables
 char rdFlNm[256];
 char buffer[1024];
+// Make directory command variable
+char dirName[256];
 
 //----------------//
 
@@ -221,4 +230,77 @@ int rdFl() {
 
     return 0;
 
+}
+
+int mkDir() {
+    printf("Directory: ");
+    if (fgets(dirName, sizeof(dirName), stdin) == NULL) {
+        printf("Error reading input\n");
+        return 1;
+    }
+
+    dirName[strcspn(dirName, "\n")] = 0;
+    #ifdef _WIN32
+        if (_mkdir(dirName) == 0) {
+            printf("Successfully created directory %s\n", dirName);
+
+            return 0;
+        }
+        else {
+            printf("Error: Failed to make directory %s\n", dirName);
+            
+            return 0;
+        }
+
+    #else
+        if (mkdir(dirName, 0755) == 0) {
+            printf("Successfully created directory %s\n", dirName); 
+            
+            return 0;
+        }
+        else {
+            printf("Error: Failed to make directory %s\n", dirName);
+            
+            return 0;
+        }
+    #endif
+
+    return 0;
+}
+
+int rmDir() {
+        printf("Directory: ");
+    if (fgets(dirName, sizeof(dirName), stdin) == NULL) {
+        printf("Error reading input\n");
+        return 1;
+    }
+
+    dirName[strcspn(dirName, "\n")] = 0;
+
+    #ifdef _WIN32
+        if (_rmdir(dirName) == 0) {
+            printf("Successfully removed directory %s\n", dirName);
+
+            return 0;
+        }
+        else {
+            printf("Error: Failed to remove directory %s\n", dirName);
+
+            return 0;
+        }
+    
+    #else
+        if (rmdir(dirName) == 0) {
+            printf("Successfully removed directory %s\n", dirName);
+
+            return 0;
+        }
+        else {
+            printf("Error: Failed to remove directory %s\n", dirName);
+
+            return 0;
+        }
+    #endif
+
+    return 0;
 }

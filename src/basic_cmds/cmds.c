@@ -66,6 +66,8 @@ int helpf() {
     printf("wrt: Command to write to a file (add -a to apend content to file | add -a -nl to append content on a newline)\n");
     printf("rd: Command to read and print the contents of a file\n");
     printf("rm: Command to remove a file\n");
+    printf("mkdir: Command to make a directory\n");
+    printf("rmdir: Command to remove an empty directory\n");
     printf("exit: Command to exit the VK Shell\n");
 
     return 0;

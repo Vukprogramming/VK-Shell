@@ -22,8 +22,10 @@ this project is still unfinished
 * wrt: Writes to a file (add -a to apend content to the file | add -a -nl if you want you want you apend content on a new line)
 * rd: Command to read and print the contents of a file
 * rm: Removes a file
+* mkdir: Makes a directory
+* rmdir: Removes a directory (can only remove empty directories **for now**)
 
-**NOTE: These commands only work in files that are in the same directory**
+**NOTE: I'll add adding files to certain directories and removing directories with file in them in the next commit**
 
 ## How to run
 You currently have 2 ways to run it

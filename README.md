@@ -5,9 +5,9 @@ this project was started on the 21/7/2025
 this project is still unfinished
 
 **The current commands are:**
-* Echo: prints out any string you input
+* Echo: Prints out any string you input
 * get/osInfo: Prints out what OS you are currently using
-* help: prints out all the commands and what they do
+* help: Prints out all the commands and what they do
 * crls: Clears the screen using ANSI escape codes (may not work in windows cmd if you didnt set up ANSI escape codes)
 * add: Adds two numbers
 * sub: Subtracts two numbers
@@ -20,12 +20,12 @@ this project is still unfinished
 * strlen: Lets you input a string and tell you the length of that strings
 * crt: Creates a file
 * wrt: Writes to a file (add -a to apend content to the file | add -a -nl if you want you want you apend content on a new line)
-* rd: Command to read and print the contents of a file
+* rd: Reads and prints out the contents of a file
 * rm: Removes a file
 * mkdir: Makes a directory
 * rmdir: Removes a directory (can only remove empty directories **for now**)
 
-**NOTE: I'll add adding files to certain directories and removing directories with file in them in the next commit**
+**NOTE: I'll add adding files to certain directories and removing directories with files in them in the next commit**
 
 ## How to run
 You currently have 2 ways to run it

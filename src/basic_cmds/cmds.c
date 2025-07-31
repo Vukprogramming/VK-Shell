@@ -5,6 +5,7 @@
 #include "os_detect.h"
 #include "../userVar.h"
 #include "../ansi.h"
+#include "../macros.h"
 
 //-BASIC VARIABLES-//
 
@@ -21,12 +22,7 @@ int strLen;
 // Echo function
 int echof() {
     printf(">");
-    if (fgets(userEchoMsg, sizeof(userEchoMsg), stdin) == NULL) {
-        printf("Error: Failed to read input");
-        return 1;
-    }
-
-    userIn[strcspn(userEchoMsg, "\n")] = 0;  // remove newline
+        GET_INPUT(userEchoMsg, sizeof(userEchoMsg));
 
     if (strlen(userEchoMsg) == 0) {
         printf("Error: No user input given");
@@ -82,13 +78,8 @@ int clrsf() {
 
 // Get string length function
 int strLenf() {
-    printf("> ");
-    if (fgets(strLenUserIn , sizeof(strLenUserIn), stdin) ==  NULL) {
-        printf("Error reading input\n");
-        return 1;
-    }
-
-    strLenUserIn[strcspn(strLenUserIn, "\n")] = 0;
+    printf(">");
+        GET_INPUT(strLenUserIn , sizeof(strLenUserIn));
 
         strLen = (strlen(strLenUserIn));
         

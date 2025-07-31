@@ -4,6 +4,7 @@
 #include "file_io.h"
 #include "../userVar.h"
 #include "../ansi.h"
+#include "../macros.h"
 
 #ifdef _WIN32
     #include <direct.h> // For _mkdir() and _rmdir()
@@ -32,13 +33,8 @@ char dirName[256];
 
 // Create file function
 int crtFlf() {
-    printf("File: ");
-    if (fgets(crtFlUserIn, sizeof(crtFlUserIn), stdin) == NULL) {
-        printf("Error reading input\n");
-        return 1;
-    }
-
-    crtFlUserIn[strcspn(crtFlUserIn, "\n")] = 0;
+    printf("File:");
+    GET_INPUT(crtFlUserIn, sizeof(crtFlUserIn));
 
         FILE *fptr;
         fptr = fopen(crtFlUserIn, "w");
@@ -58,13 +54,7 @@ int crtFlf() {
 
 // Remove file function
 int rmf(void) {
-    printf("Enter your password: ");
-    if (fgets(userPassAtt, sizeof(userPassAtt), stdin) ==  NULL) {
-        printf("Error reading input");
-        return 1;
-    }
-
-    userPassAtt[strcspn(userPassAtt, "\n")] = 0;
+    CHECK_PASS(userPassAtt, sizeof(userPassAtt));
 
         if (strcmp(userPassAtt, userPass) == 0) {
             printf("File: ");
@@ -74,7 +64,7 @@ int rmf(void) {
             }
     }
 
-    rmFile[strcspn(rmFile, "\n")] = 0;
+    STRIP_NL(rmFile);
 
     if (remove(rmFile) == 0) {
         printf("File \"%s\" has been successfully removed.\n", rmFile);
@@ -89,22 +79,12 @@ int rmf(void) {
 // Write to file function
 int wrtFl() {
     // Ask for file to write to
-    printf("File: ");
-    if (fgets(wrtFlNm, sizeof(wrtFlNm), stdin) == NULL) {
-        printf("Error reading input\n");
-        return 1;
-    }
-
-    wrtFlNm[strcspn(wrtFlNm, "\n")] = 0;
+    printf("File:");
+        GET_INPUT(wrtFlNm, sizeof(wrtFlNm));    
 
     // Ask what content to write to file
-    printf("Content: ");
-    if (fgets(wrtFlInStr, sizeof(wrtFlInStr), stdin) == NULL) {
-        printf("Error reading input\n");
-        return 1;
-    }
-
-    wrtFlInStr[strcspn(wrtFlInStr, "\n")] = 0;
+    printf("Content:");
+        GET_INPUT(wrtFlInStr, sizeof(wrtFlInStr));
 
         FILE *fptr;
         fptr = fopen(wrtFlNm, "w");
@@ -127,22 +107,12 @@ int wrtFl() {
 // Append content to file function (write)
 int wrtApFl() {
     // Ask for file to write to
-    printf("File: ");
-    if (fgets(wrtFlNm, sizeof(wrtFlNm), stdin) == NULL) {
-        printf("Error reading input\n");
-        return 1;
-    }
-
-    wrtFlNm[strcspn(wrtFlNm, "\n")] = 0;
+    printf("File:");
+        GET_INPUT(wrtFlNm, sizeof(wrtFlNm));
 
     // Ask what content to write to file
-    printf("Content: ");
-    if (fgets(wrtFlInStr, sizeof(wrtFlInStr), stdin) == NULL) {
-        printf("Error reading input\n");
-        return 1;
-    }
-
-    wrtFlInStr[strcspn(wrtFlInStr, "\n")] = 0;
+    printf("Content:");
+        GET_INPUT(wrtFlInStr, sizeof(wrtFlInStr));
 
         FILE *fptr;
         fptr = fopen(wrtFlNm, "a");
@@ -165,22 +135,12 @@ int wrtApFl() {
 // Append content on new line to file function (write)
 int wrtFlApNl() {
     // Ask for file to write to
-    printf("File: ");
-    if (fgets(wrtFlNm, sizeof(wrtFlNm), stdin) == NULL) {
-        printf("Error reading input\n");
-        return 1;
-    }
-
-    wrtFlNm[strcspn(wrtFlNm, "\n")] = 0;
+    printf("File:");
+        GET_INPUT(wrtFlNm, sizeof(wrtFlNm));
 
     // Ask what content to write to file
-    printf("Content: ");
-    if (fgets(wrtFlInStr, sizeof(wrtFlInStr), stdin) == NULL) {
-        printf("Error reading input\n");
-        return 1;
-    }
-
-    wrtFlInStr[strcspn(wrtFlInStr, "\n")] = 0;
+    printf("Content:");
+        GET_INPUT(wrtFlInStr, sizeof(wrtFlInStr));
 
         FILE *fptr;
         fptr = fopen(wrtFlNm, "a");
@@ -203,13 +163,8 @@ int wrtFlApNl() {
 // Read file function
 int rdFl() {
     // Ask for what file to read
-    printf("File: ");
-    if (fgets(rdFlNm, sizeof(rdFlNm), stdin) ==  NULL) {
-        printf("Error reading input\n");
-        return 1;
-    }
-
-    rdFlNm[strcspn(rdFlNm, "\n")] = 0;
+    printf("File:");
+        GET_INPUT(rdFlNm, sizeof(rdFlNm));
 
     FILE *fptr; 
     fptr = fopen(rdFlNm, "r");
@@ -233,13 +188,9 @@ int rdFl() {
 }
 
 int mkDir() {
-    printf("Directory: ");
-    if (fgets(dirName, sizeof(dirName), stdin) == NULL) {
-        printf("Error reading input\n");
-        return 1;
-    }
+    printf("Directory:");
+        GET_INPUT(dirName, sizeof(dirName));
 
-    dirName[strcspn(dirName, "\n")] = 0;
     #ifdef _WIN32
         if (_mkdir(dirName) == 0) {
             printf("Successfully created directory %s\n", dirName);
@@ -269,38 +220,36 @@ int mkDir() {
 }
 
 int rmDir() {
-        printf("Directory: ");
-    if (fgets(dirName, sizeof(dirName), stdin) == NULL) {
-        printf("Error reading input\n");
-        return 1;
-    }
+    CHECK_PASS(userPassAtt, sizeof(userPassAtt));
 
-    dirName[strcspn(dirName, "\n")] = 0;
+        if (strcmp(userPassAtt, userPass) == 0) {
+            printf("Directory:");
+                GET_INPUT(dirName, sizeof(dirName));
+        #ifdef _WIN32
+            if (_rmdir(dirName) == 0) {
+                printf("Successfully removed directory %s\n", dirName);
 
-    #ifdef _WIN32
-        if (_rmdir(dirName) == 0) {
-            printf("Successfully removed directory %s\n", dirName);
+                return 0;
+            }
+            else {
+                printf("Error: Failed to remove directory %s\n", dirName);
 
-            return 0;
-        }
-        else {
-            printf("Error: Failed to remove directory %s\n", dirName);
-
-            return 0;
-        }
+                return 0;
+            }
     
-    #else
-        if (rmdir(dirName) == 0) {
-            printf("Successfully removed directory %s\n", dirName);
+        #else
+            if (rmdir(dirName) == 0) {
+                printf("Successfully removed directory %s\n", dirName);
 
-            return 0;
-        }
-        else {
-            printf("Error: Failed to remove directory %s\n", dirName);
+                return 0;
+            }
+            else {
+                printf("Error: Failed to remove directory %s\n", dirName);
 
-            return 0;
-        }
-    #endif
+                return 0;
+            }
+        #endif
+    }
 
     return 0;
 }

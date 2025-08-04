@@ -1,11 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "cmds.h"
 #include "os_detect.h"
 #include "../userVar.h"
 #include "../ansi.h"
 #include "../macros.h"
+#include "../errors.h"
+#include "../file_cmds/file_io.h"
 
 //-BASIC VARIABLES-//
 
@@ -25,7 +28,7 @@ int echof() {
         GET_INPUT(userEchoMsg, sizeof(userEchoMsg));
 
     if (strlen(userEchoMsg) == 0) {
-        printf("Error: No user input given");
+        printf(COLOR_RED "%s: %s\n", ERRORS.no_input_entered, ANSI_RESET);
         
         return 0;
     }
@@ -50,6 +53,9 @@ int helpf() {
     printf("help: Command to see this text\n");
     printf("clrs: Command to clear the screen\n");
     printf("strlen: Command to find the length of a string\n");
+    printf("time: Tells the current time and date\n");
+    printf("vk --ver: Tells basic info about VK shell\n");
+    printf("info: Tells info about VK Shell\n");
     printf("colors: Command to print the ANSI color table\n");
     printf("add: Adds two numbers\n");
     printf("sub: Subtracts two numbers\n");
@@ -71,7 +77,11 @@ int helpf() {
 
 // Clear screen function
 int clrsf() {
-    printf("\033[2J\033[H");
+    #ifdef _WIN32
+    system("cls");
+    #else
+    system("clear");
+    #endif
 
     return 0;
 } 
@@ -102,8 +112,21 @@ int shwClrTbl()  {
 }
 
 int shellInfo() {
-    printf("VK Shell [Version 1.5.10]\n");
+    printf("VK Shell [Version 1.6.0]\n");
 
+    return 0;
+}
+
+int shellDetInfo() {
+   rdHcFl("info_d.txt");
+    return 0;
+}
+
+int getTime() {
+    time_t currentTime;
+    time(&currentTime);
+
+    printf("%s", ctime(&currentTime));
     return 0;
 }
 // Exit function

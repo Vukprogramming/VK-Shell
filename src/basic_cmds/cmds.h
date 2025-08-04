@@ -31,6 +31,10 @@ int strLenf();
 int shwClrTbl(void);
 // Shell info function
 int shellInfo(void); 
+// Detailed shell info function
+int shellDetInfo(void);
+// Get time fucntion
+int getTime(void);
 // Exit function
 int exitf(void);
 

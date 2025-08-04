@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "errors.h"
 
 // Get input macro
 #define GET_INPUT(input, size) do {                             \
     printf(" ");                                                \
-    if (fgets(input, size, stdin) == NULL) {                    \
-        printf("Error: Failed to read input\n");                \
+    if (fgets(input, size, stdin) == NULL) {                       \
+        printf("%s\n", ERRORS.input_read_error);                \
         return 1;                                               \
     }                                                           \
     input[strcspn(input, "\n")] = 0;                            \

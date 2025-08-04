@@ -34,6 +34,8 @@ int wrtApFl(void);
 int wrtFlApNl(void);
 // Read file function
 int rdFl(void);
+// Read file function (hardcoded file)
+int rdHcFl(const char* artFile);
 // Make directory function
 int mkDir(void);
 // Remove directory function

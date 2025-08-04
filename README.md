@@ -4,6 +4,9 @@ i started this project to get to know C better
 this project was started on the 21/7/2025
 this project is still unfinished
 
+**Current version: 1.6.0**
+**Release status: Stable**
+
 **The current commands are:**
 * Echo: Prints out any string you input
 * get/osInfo: Prints out what OS you are currently using
@@ -25,9 +28,9 @@ this project is still unfinished
 * mkdir: Makes a directory
 * rmdir: Removes a directory (can only remove empty directories **for now**)
 
-**NOTE: I'll add adding files to certain directories and removing directories with files in them in the next commit**
+**NOTE: I'll add adding files to certain directories and removing directories with files in them in version 1.8.0**
 
 ## How to run
 You currently have 2 ways to run it
 * (Linux) Use the Makefile and compile it into a binary and run it using the command "./vk"
-* (Windows) You can cd into the VK Shell's directory and run the command "gcc -Wall -Wextra -std=c11 -o vk vk.c src/basic_cmds/cmds.c src/userVar.c src/calc_cmds/calc.c  src/file_cmds/file_io.c  src/user_cmds/user.c" to compile it into a .exe and run it
+* (Windows) You can cd into the VK Shell's directory and run the command "gcc -Wall -Wextra -std=c11 -o vk vk.c src/basic_cmds/cmds.c src/userVar.c src/calc_cmds/calc.c  src/file_cmds/file_io.c  src/user_cmds/user.c src/errors.c" to compile it into a .exe and run it

@@ -1,10 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <errno.h>
 #include "file_io.h"
 #include "../userVar.h"
 #include "../ansi.h"
 #include "../macros.h"
+#include "../errors.h"
 
 #ifdef _WIN32
     #include <direct.h> // For _mkdir() and _rmdir()
@@ -26,6 +28,8 @@ char wrtFlInStr[1024];
 // Read file command variables
 char rdFlNm[256];
 char buffer[1024];
+// Hardcoded file
+char artFile[256];
 // Make directory command variable
 char dirName[256];
 
@@ -40,9 +44,9 @@ int crtFlf() {
         fptr = fopen(crtFlUserIn, "w");
 
     if (fptr == NULL) {
-        printf("Error: Could not create/open file\n");
+        printf(COLOR_RED "%s: %s" ANSI_RESET "\n", ERRORS.failed_create_file, strerror(errno));
 
-        return 1;
+        return 0;
     }
 
         fclose(fptr);  
@@ -59,18 +63,20 @@ int rmf(void) {
         if (strcmp(userPassAtt, userPass) == 0) {
             printf("File: ");
             if (fgets(rmFile, sizeof(rmFile), stdin) ==  NULL) {
-                printf("Error reading input\n");
-                return 1;
+                printf(COLOR_RED "%s: %s" ANSI_RESET "\n", ERRORS.failed_removing_file, strerror(errno));
+                return 0;
             }
-    }
+        }
+        else {
+            return 1;
+        }
 
     STRIP_NL(rmFile);
 
     if (remove(rmFile) == 0) {
         printf("File \"%s\" has been successfully removed.\n", rmFile);
     } else {
-        perror(COLOR_RED "Error removing file\n");
-        printf(COLOR_RED ANSI_RESET);
+        printf(COLOR_RED "%s: %s" ANSI_RESET "\n", ERRORS.failed_removing_file, strerror(errno));
     }
 
     return 0;
@@ -90,9 +96,9 @@ int wrtFl() {
         fptr = fopen(wrtFlNm, "w");
 
         if (fptr == NULL) {
-            printf(COLOR_RED "Error: Failed writing to the file %s\n", wrtFlNm);
+            printf(COLOR_RED "%s: %s" ANSI_RESET "\n", ERRORS.failed_write_to_file, strerror(errno));
 
-            return 1;
+            return 0;
         }
 
             fprintf(fptr, "%s", wrtFlInStr);
@@ -118,9 +124,9 @@ int wrtApFl() {
         fptr = fopen(wrtFlNm, "a");
 
         if (fptr == NULL) {
-            printf(COLOR_RED "Error: Failed writing to the file %s\n", wrtFlNm);
+            printf(COLOR_RED "%s: %s" ANSI_RESET "\n", ERRORS.failed_write_to_file, strerror(errno));
 
-            return 1;
+            return 0;
         }
 
             fprintf(fptr, " %s", wrtFlInStr);
@@ -146,9 +152,9 @@ int wrtFlApNl() {
         fptr = fopen(wrtFlNm, "a");
 
         if (fptr == NULL) {
-            printf(COLOR_RED "Error: Failed writing to the file %s\n", wrtFlNm);
+            printf(COLOR_RED "%s: %s" ANSI_RESET "\n", ERRORS.failed_write_to_file, strerror(errno));
 
-            return 1;
+            return 0;
         }
 
             fprintf(fptr, "\n%s", wrtFlInStr);
@@ -170,9 +176,9 @@ int rdFl() {
     fptr = fopen(rdFlNm, "r");
 
     if (fptr == NULL) {
-        printf(COLOR_RED "Error: Failed reading file %s\n", wrtFlNm);
+        printf(COLOR_RED "%s: %s" ANSI_RESET "\n", ERRORS.failed_to_read_file, strerror(errno));
 
-        return 1;
+        return 0;
     }
 
     while (fgets(buffer, sizeof(buffer), fptr) != NULL) {
@@ -187,6 +193,27 @@ int rdFl() {
 
 }
 
+int rdHcFl(const char* artFile) {
+    FILE *fptr;
+    fptr = fopen(artFile, "r");
+
+    if (fptr ==  NULL) {
+        printf(COLOR_RED "%s: %s" ANSI_RESET "\n", ERRORS.failed_to_read_file, strerror(errno));
+
+        return 0;
+    }
+
+    while (fgets(buffer, sizeof(buffer), fptr) != NULL) {
+        printf("%s", buffer);
+    }
+
+    printf("\n");
+
+    fclose(fptr);
+
+    return 0;
+}
+
 int mkDir() {
     printf("Directory:");
         GET_INPUT(dirName, sizeof(dirName));
@@ -198,7 +225,7 @@ int mkDir() {
             return 0;
         }
         else {
-            printf("Error: Failed to make directory %s\n", dirName);
+            printf(COLOR_RED "%s: %s" ANSI_RESET "\n", ERRORS.failed_create_directory, strerror(errno));
             
             return 0;
         }
@@ -210,7 +237,7 @@ int mkDir() {
             return 0;
         }
         else {
-            printf("Error: Failed to make directory %s\n", dirName);
+            printf(COLOR_RED "%s: %s" ANSI_RESET "\n", ERRORS.failed_create_directory, strerror(errno));
             
             return 0;
         }
@@ -232,7 +259,7 @@ int rmDir() {
                 return 0;
             }
             else {
-                printf("Error: Failed to remove directory %s\n", dirName);
+                printf(COLOR_RED "%s: %s" ANSI_RESET "\n", ERRORS.failed_remove_directory, strerror(errno));
 
                 return 0;
             }
@@ -244,12 +271,16 @@ int rmDir() {
                 return 0;
             }
             else {
-                printf("Error: Failed to remove directory %s\n", dirName);
+                printf(COLOR_RED "%s: %s" ANSI_RESET "\n", ERRORS.failed_remove_directory, strerror(errno));
 
                 return 0;
             }
         #endif
-    }
+        }
+        
+        else {
+            return 1;
+        }
 
     return 0;
 }

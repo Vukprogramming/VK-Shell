@@ -40,12 +40,16 @@ int chngUserPass() {
 
 // Print all user info function
 int userEcho() {
-    printf(">");
+    printf("Enter your password: ");
         GET_INPUT(userPassAtt, sizeof(userPassAtt));
     
             if (strcmp(userPassAtt, userPass) == 0) {
                 printf("\nUser: %s\n", userName);
                 printf("Password: %s\n", userPass);
+            }
+            
+            else {
+                return 1;
             }
 
     return 0;

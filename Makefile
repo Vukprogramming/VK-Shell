@@ -5,7 +5,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -std=c11
 
 # Source files
-SRC = vk.c src/basic_cmds/cmds.c src/userVar.c src/calc_cmds/calc.c  src/file_cmds/file_io.c  src/user_cmds/user.c
+SRC = vk.c src/basic_cmds/cmds.c src/userVar.c src/calc_cmds/calc.c  src/file_cmds/file_io.c  src/user_cmds/user.c  src/errors.c
 
 # Output binary
 OUT = vk

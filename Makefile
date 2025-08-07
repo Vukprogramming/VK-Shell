@@ -22,4 +22,4 @@ clean:
 	rm -f $(OUT)
 
 # To compile to .exe for windows:
-# gcc -Wall -Wextra -std=c11 -o vk vk.c src/basic_cmds/cmds.c src/userVar.c src/calc_cmds/calc.c  src/file_cmds/file_io.c  src/user_cmds/user.c
+# gcc -Wall -Wextra -std=c11 -o vk vk.c src/basic_cmds/cmds.c src/userVar.c src/calc_cmds/calc.c  src/file_cmds/file_io.c  src/user_cmds/user.c src/errors.c

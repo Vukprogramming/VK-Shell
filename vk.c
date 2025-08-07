@@ -12,7 +12,11 @@ int main_sce(void);
 
 int main() {
 
-    printf("\033[2J\033[H");
+    #ifdef _WIN32
+        system("cls");
+    #else
+        system("clear");
+    #endif
 
     //char userName[256];
     //char userPass[256];
